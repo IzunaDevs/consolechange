@@ -31,8 +31,29 @@ consoletitle(PyObject *self, PyObject *args) {
   Py_RETURN_NONE;
 }
 
+static PyObject *
+consolesize(PyObject *self, PyObject *args) {
+  int rows, cols;
+  /* must be a pair of ints. */
+  if (!PyArg_ParseTuple(args, "ii", &rows, &cols))
+      return NULL;
+#if defined(_WIN32)
+  /* should be more than enough space for this. */
+  char buffer [256];
+  int snprintf_ret;
+  snprintf_ret = snprintf(buffer, sizeof(buffer), "mode con: cols=%i lines=%i", rows, cols);
+  system(buffer);
+#else
+  /* do nothing for now until I work out of way to
+   * change the terminal size termporarily.
+   */
+#endif
+  Py_RETURN_NONE;
+}
+
 static PyMethodDef _consolechange_methods[] = {
-  {"consoletitle", consoletitle, METH_VARARGS, "Sets the console title in a platform independent way."},
+  {"consoletitle", consoletitle, METH_VARARGS, "Sets the console (terminal) title in a platform independent way."},
+  {"consolesize", consolesize, METH_VARARGS, "Sets the console size. Only works on Windows, any other platforms it currently does nothing for now."},
   {NULL, NULL, 0, NULL}
 };
 
