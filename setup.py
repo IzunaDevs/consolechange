@@ -45,9 +45,10 @@ setup(name='consolechange',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
         'Operating System :: OS Independent',
+        'Programming Language :: C',
         'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: Implementation :: CPython',
         'Topic :: Software Development :: Libraries',
         'Topic :: Software Development :: Libraries :: Python Modules',
-        'Topic :: Utilities',
       ]
 )
