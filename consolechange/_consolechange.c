@@ -33,32 +33,44 @@ consoletitle(PyObject *self, PyObject *args) {
 
 static PyObject *
 consolesize(PyObject *self, PyObject *args) {
+  /*
+   * looks like that in platforms not windows
+   * this is not possible in them.
+   * So, because of this we define the function, but not do anything for them.
+   */
+#if defined(_WIN32)
   int rows, cols;
   /* must be a pair of ints. */
   if (!PyArg_ParseTuple(args, "ii", &rows, &cols))
       return NULL;
-#if defined(_WIN32)
   /* should be more than enough space for this. */
   char buffer [256];
   int snprintf_ret;
   snprintf_ret = snprintf(buffer, sizeof(buffer), "mode con: cols=%i lines=%i", rows, cols);
   system(buffer);
-#else
-  /* do nothing for now until I work out of way to
-   * change the terminal size termporarily.
-   */
 #endif
   Py_RETURN_NONE;
 }
 
 static PyMethodDef _consolechange_methods[] = {
-  {"consoletitle", consoletitle, METH_VARARGS, "Sets the console (terminal) title in a platform independent way."},
-  {"consolesize", consolesize, METH_VARARGS, "Sets the console size. Only works on Windows, any other platforms it currently does nothing for now."},
+  {"consoletitle", consoletitle, METH_VARARGS,
+   "Sets the console (terminal) title in a platform independent way."},
+  {"consolesize", consolesize, METH_VARARGS,
+   "Sets the console size. Only works on Windows, any "
+   "other platforms it currently does nothing for now."},
   {NULL, NULL, 0, NULL}
 };
 
 static struct PyModuleDef _consolechangemodule = {
-  PyModuleDef_HEAD_INIT, "_consolechange", "Python extension module that automates the console (or terminal) title change stuff for you that works for most (if not all) platforms in an single python function (Unlike the multiple ways people can do it already in python that requires using sys.platform to get if it is windows or not just to set it). This is useful as then it allows much simpler and platform independent code without the need to use sys.platform for any of it just to set an console (Terminal in unix) title.", -1, _consolechange_methods
+  PyModuleDef_HEAD_INIT, "_consolechange",
+  "Python extension module that automates the console (or terminal) "
+  "title change stuff for you that works for most (if not all) "
+  "platforms in an single python function (Unlike the multiple ways "
+  "people can do it already in python that requires using "
+  "sys.platform to get if it is windows or not just to set it). This "
+  "is useful as then it allows much simpler and platform independent "
+  "code without the need to use sys.platform for any of it just to "
+  "set an console (Terminal in unix) title.", -1, _consolechange_methods
 };
 
 PyMODINIT_FUNC
