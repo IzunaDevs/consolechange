@@ -33,11 +33,6 @@ consoletitle(PyObject *self, PyObject *args) {
 
 static PyObject *
 consolesize(PyObject *self, PyObject *args) {
-  /*
-   * looks like that in platforms not windows
-   * this is not possible in them.
-   * So, because of this we define the function, but not do anything for them.
-   */
 #if defined(_WIN32)
   int rows, cols;
   /* must be a pair of ints. */
@@ -45,8 +40,7 @@ consolesize(PyObject *self, PyObject *args) {
       return NULL;
   /* should be more than enough space for this. */
   char buffer [256];
-  int snprintf_ret;
-  snprintf_ret = snprintf(buffer, sizeof(buffer), "mode con: cols=%i lines=%i", rows, cols);
+  snprintf(buffer, sizeof(buffer), "mode con: cols=%i lines=%i", rows, cols);
   system(buffer);
 #endif
   Py_RETURN_NONE;
