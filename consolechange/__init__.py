@@ -1,4 +1,8 @@
-"""Package that allows changing the Console (Terminal) title in an platform independent way."""
+"""
+Package that allows changing
+the Console (Terminal) title in
+an platform independent way.
+"""
 
 from ._consolechange import *
 
