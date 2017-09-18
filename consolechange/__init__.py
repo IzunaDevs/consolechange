@@ -4,6 +4,13 @@ the Console (Terminal) title in
 an platform independent way.
 """
 
-from ._consolechange import *
+try:
+    from ._consolechange import *
+except ImportError:
+    # pass the exception as the
+    # c extension is not available
+    # so this might mean that setup
+    # needs the version from this script.
+    pass
 
-__version__ = '0.0.2'
+__version__ = '0.0.3'

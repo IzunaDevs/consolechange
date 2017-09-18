@@ -2,9 +2,9 @@ from setuptools import setup
 from setuptools.extension import Extension
 import sys
 
-requirements = []
+from consolechange import __version__
 
-version = '0.0.2'
+requirements = []
 
 if sys.platform != 'cygwin':
     _consolechange = Extension('consolechange._consolechange', sources=[
@@ -14,9 +14,6 @@ else:
                                library_dirs=['/usr/local/bin'],
                                sources=['consolechange/_consolechange.c'])
 
-
-if not version:
-    raise RuntimeError('version is not set')
 
 try:
     with open('README.rst') as f:
@@ -29,7 +26,7 @@ setup(name='consolechange',
       author_email='izunadevs@martmists.com',
       url='https://github.com/IzunaDevs/consolechange',
       bugtrack_url='https://github.com/IzunaDevs/consolechange/issues',
-      version=version,
+      version=__version__,
       packages=['consolechange'],
       data_files=[('consolechange', ['consolechange/_consolechange.c.h'])],
       ext_modules=[_consolechange],
