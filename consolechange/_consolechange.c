@@ -1,8 +1,3 @@
-#include <Python.h>
-#include <stdio.h>
-#ifdef _WIN32
-#include <windows.h>
-#endif
 #include "_consolechange.c.h"
 
 static PyObject *
@@ -32,10 +27,4 @@ consolesize(PyObject *self, PyObject *args) {
   system(buffer);
 #endif
   Py_RETURN_NONE;
-}
-
-PyMODINIT_FUNC
-PyInit__consolechange(void)
-{
-  return PyModule_Create(&_consolechangemodule);
 }

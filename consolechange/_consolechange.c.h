@@ -1,6 +1,11 @@
 /*
  * _consolechange.c.h
  */
+#include <Python.h>
+#include <stdio.h>
+#ifdef _WIN32
+#include <windows.h>
+#endif
 
 static PyObject *consoletitle(PyObject *self, PyObject *args);
 static PyObject *consolesize(PyObject *self, PyObject *args);
@@ -33,3 +38,8 @@ static struct PyModuleDef _consolechangemodule = {
   "(Terminal in unix) title.", -1,
   _consolechange_methods
 };
+
+PyMODINIT_FUNC
+PyInit__consolechange(void) {
+  return PyModule_Create(&_consolechangemodule);
+}
