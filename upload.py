@@ -3,7 +3,7 @@ import subprocess
 
 import requests
 
-import nsfw_dl
+import consolechange
 
 
 un = os.environ["PYPI_USERNAME"]
@@ -11,12 +11,12 @@ pw = os.environ["PYPI_PASSWORD"]
 
 try:
     remote_ver = requests.get(
-        "https://pypi.python.org/pypi/nsfw_dl/json").json()["info"]["version"]
+        "https://pypi.python.org/pypi/consolechange/json").json()["info"]["version"]
 
 except:  # noqa pylint: disable=bare-except
     remote_ver = "0.0.0"
 
-ver = nsfw_dl.__version__
+ver = consolechange.__version__
 
 if ver != remote_ver:
     p1 = subprocess.Popen(
