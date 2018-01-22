@@ -73,10 +73,21 @@ PyInit__consolechange(void)
   if (m == NULL)
     return NULL;
   
-  /* now we make an all_members
-   * list of the module's
-   * members.
+  PyObject *_all_members = PyList_New(2);
+  if (_all_members == NULL)
+    return NULL;
+  
+  PyList_SetItem(
+    _all_members, 0,
+    PyUnicode_FromString("consoletitle"));
+  PyList_SetItem(
+    _all_members, 1,
+    PyUnicode_FromString("consolesize"));
+  
+  /* expose this here...
+   * only needed for travis.
    */
+  PyModule_AddObject(m, "all_members", _all_members);
   
   return m;
 }
