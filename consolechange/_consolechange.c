@@ -5,7 +5,8 @@
 #endif
 
 static PyObject *
-consoletitle(PyObject *self, PyObject *args) {
+consoletitle(PyObject *self, PyObject *args)
+{
   const char *title;
   if (!PyArg_ParseTuple(args, "s", &title))
       return NULL;
@@ -20,7 +21,8 @@ consoletitle(PyObject *self, PyObject *args) {
 }
 
 static PyObject *
-consolesize(PyObject *self, PyObject *args) {
+consolesize(PyObject *self, PyObject *args)
+{
 #if defined(_WIN32)
   int rows, cols;
   if (!PyArg_ParseTuple(args, "ii", &rows, &cols))
@@ -63,6 +65,18 @@ static struct PyModuleDef _consolechangemodule = {
 };
 
 PyMODINIT_FUNC
-PyInit__consolechange(void) {
-  return PyModule_Create(&_consolechangemodule);
+PyInit__consolechange(void)
+{
+  PyObject* m;
+  
+  m = PyModule_Create(&_consolechangemodule);
+  if (m == NULL)
+    return NULL;
+  
+  /* now we make an __all__
+   * list of the module's
+   * members.
+   */
+  
+  return m;
 }
