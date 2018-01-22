@@ -49,5 +49,4 @@ setup(name='consolechange',
         'Programming Language :: Python :: Implementation :: CPython',
         'Topic :: Software Development :: Libraries',
         'Topic :: Software Development :: Libraries :: Python Modules',
-      ]
-)
+      ])
