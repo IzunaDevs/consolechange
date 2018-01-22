@@ -14,7 +14,9 @@ install:
   - pip install -r requirements-ci.txt
 
 script:
-  - flake8
+  # because we need to know what
+  # is flake8 detecting bad faster and easier.
+  - flake8 --show-source
   - python3.6 setup.py install
   - pytest
   - python3.6 upload.py
