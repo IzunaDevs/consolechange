@@ -11,7 +11,8 @@ pw = os.environ["PYPI_PASSWORD"]
 
 try:
     remote_ver = requests.get(
-        "https://pypi.python.org/pypi/consolechange/json").json()["info"]["version"]
+        "https://pypi.python.org/pypi/consolechange/json"
+    ).json()["info"]["version"]
 
 except:  # noqa pylint: disable=bare-except
     remote_ver = "0.0.0"
