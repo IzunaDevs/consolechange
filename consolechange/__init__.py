@@ -13,4 +13,10 @@ except ImportError:
     # needs the version from this script.
     pass
 
+
+if _consolechange is not None:
+  __all__ = _consolechange.all_members
+  consoletitle = _consolechange.consoletitle
+  consolesize = _consolechange.consolesize
+
 __version__ = '0.0.3'
