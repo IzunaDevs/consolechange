@@ -73,7 +73,7 @@ PyInit__consolechange(void)
   if (m == NULL)
     return NULL;
   
-  /* now we make an __all__
+  /* now we make an all_members
    * list of the module's
    * members.
    */
