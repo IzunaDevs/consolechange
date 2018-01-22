@@ -5,18 +5,17 @@ an platform independent way.
 """
 
 try:
-    from ._consolechange import *
+    from . import _consolechange
 except ImportError:
-    # pass the exception as the
-    # c extension is not available
+    # the c extension is not available
     # so this might mean that setup
     # needs the version from this script.
-    pass
+    _consolechange = None
 
 
 if _consolechange is not None:
-  __all__ = _consolechange.all_members
-  consoletitle = _consolechange.consoletitle
-  consolesize = _consolechange.consolesize
+    __all__ = _consolechange.all_members
+    consoletitle = _consolechange.consoletitle
+    consolesize = _consolechange.consolesize
 
 __version__ = '0.0.3'
