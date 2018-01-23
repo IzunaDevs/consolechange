@@ -12,7 +12,7 @@ consoletitle(PyObject *self, PyObject *args)
       return NULL;
 #if defined(_WIN32)
   SetConsoleTitleA(title);
-#elif /*defined(__linux__) || */defined(__CYGWIN__)
+#elif defined(__linux__) || defined(__CYGWIN__)
   printf("\033]2;%s\007\n\033[1A", title);
 #else
   printf("\033]0;%s\007", title);
