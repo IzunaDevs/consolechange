@@ -20,29 +20,31 @@ consoletitle(PyObject *self, PyObject *args)
   Py_RETURN_NONE;
 }
 
-static PyObject *
-consolesize(PyObject *self, PyObject *args)
-{
-#if defined(_WIN32)
-  int rows, cols;
-  if (!PyArg_ParseTuple(args, "ii", &rows, &cols))
-      return NULL;
-  char buffer [256];
-  snprintf(buffer, sizeof(buffer),
-    "mode con: cols=%i lines=%i", rows, cols);
-  system(buffer);
-#endif
-  Py_RETURN_NONE;
-}
+/* static PyObject *
+ * consolesize(PyObject *self, PyObject *args)
+ * {
+ * #if defined(_WIN32)
+ *   int rows, cols;
+ *   if (!PyArg_ParseTuple(args, "ii", &rows, &cols))
+ *       return NULL;
+ *   char buffer [256];
+ *   snprintf(buffer, sizeof(buffer),
+ *     "mode con: cols=%i lines=%i", rows, cols);
+ *   system(buffer);
+ * #endif
+ *   Py_RETURN_NONE;
+ * }
+ */
 
 static PyMethodDef _consolechange_methods[] = {
   {"consoletitle", consoletitle, METH_VARARGS,
    "Sets the console (terminal) title in "
    "a platform independent way."},
-  {"consolesize", consolesize, METH_VARARGS,
-   "Sets the console size. On Windows "
-   "this resizes the console, on any "
-   "other platforms it just returns None."},
+  /* {"consolesize", consolesize, METH_VARARGS,
+   * "Sets the console size. On Windows "
+   * "this resizes the console, on any "
+   * "other platforms it just returns None."},
+   */
   {NULL, NULL, 0, NULL}
 };
 
@@ -80,9 +82,11 @@ PyInit__consolechange(void)
   PyList_SetItem(
     _all_members, 0,
     PyUnicode_FromString("consoletitle"));
-  PyList_SetItem(
-    _all_members, 1,
-    PyUnicode_FromString("consolesize"));
+  /*
+   * PyList_SetItem(
+   *   _all_members, 1,
+   *   PyUnicode_FromString("consolesize"));
+   */
   
   /* expose this here...
    * only needed for travis.
