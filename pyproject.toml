@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "consolechange"
+version = "0.0.3"
+license = { text="MIT" }
+authors = [
+  { name="IzunaDevs", email="izunadevs@martmists.com" },
+]
+description = "Package that allows changing the Console (Terminal) title in an platform independent way."
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: C",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = []
+
+[project.urls]
+"Homepage" = "https://github.com/IzunaDevs/consolechange"
+"Bug Tracker" = "https://github.com/IzunaDevs/consolechange/issues"
